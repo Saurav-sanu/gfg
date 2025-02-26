@@ -10,12 +10,16 @@ class Solution {
   public:
   void dfs(vector<vector<int>>&adj,vector<bool>&visited,int u,stack<int>&st){
       visited[u]=true;
-      
+
+
+    //phle mere bacho ko dalo stack mai
       for(int &v:adj[u]){
           if(!visited[v]){
               dfs(adj,visited,v,st);
           }
       }
+
+    //phir mere ko dalo
       st.push(u);
   }
     // Function to return list containing vertices in Topological order.
