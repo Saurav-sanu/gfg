@@ -7,36 +7,51 @@ using namespace std;
 
 class Solution {
   public:
-    bool isCycleDfs(vector<bool>&visited,vector<bool>&inRecursion,int u,vector<vector<int>>&adj){
-        visited[u]=true;
-        inRecursion[u]=true;
-        
-        
-        for(int &v:adj[u]){
-            if(visited[v]==false && isCycleDfs(visited,inRecursion,v,adj)){
-                return true;
-            }
-            
-            else if(inRecursion[v]==true && visited[v]==true){
-                return true;
-            }
-        }
-        inRecursion[u]=false;
-        return false;
-        
-        
-    }
+    
     bool isCyclic(vector<vector<int>> &adj) {
         int n=adj.size();
-        vector<bool>visited(n,false);
-        vector<bool>inRecursion(n,false);
+        queue<int>q;
+        int count=0;
         
+        vector<int>indegree(n,0);
+        
+        //step 1
         for(int i=0;i<n;i++){
-            if(!visited[i] && isCycleDfs(visited,inRecursion,i,adj)){
-                return true;
+            for(int &v:adj[i]){
+                indegree[v]++;
             }
         }
-        return false;
+        
+        //step 2
+        for(int i=0;i<n;i++){
+            if(indegree[i]==0){
+                q.push(i);
+                
+            }
+        }
+        
+        //step 3
+        while(!q.empty()){
+            int element=q.front();
+            q.pop();
+            count++;
+            
+            for(int &v:adj[element]){
+                indegree[v]--;
+                if(indegree[v]==0){
+                    q.push(v);
+                }
+            }
+        }
+        
+        if(count==n){
+            return false;
+        }
+        else {
+            return true;
+        }
+        
+        
     }
 };
 
