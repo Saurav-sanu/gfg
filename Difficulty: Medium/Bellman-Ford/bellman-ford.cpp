@@ -90,4 +90,34 @@ int main() {
     return 0;
 }
 
+time is 0(v*m)
+
+Edge Relaxation (V-1 times)
+
+Each iteration scans M edges.
+Total operations: 
+(𝑉−1)×𝑀=𝑂(𝑉𝑀)
+
+for negative scycle detection
+scanning M edges
+total operation for this is 0(m).
+
+ttoal time complexity is 0(vM)+0(m)
+  which is equal to 0(VM).
+
+
+
+
+
+  
+  space is 0(v+m).
+  Distance Array (dist)
+
+Requires O(V) space to store shortest distances.
+Graph Representation (edges vector)
+
+Stores M edges, requiring O(M) space.
+
+
+
 // } Driver Code Ends
