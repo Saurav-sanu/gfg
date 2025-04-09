@@ -66,4 +66,41 @@ int main() {
     return 0;
 }
 
+
+
+
+
+// or same code can be wriiten like this
+class Solution {
+  public:
+  
+    int solve(int m,int n,string &s1,string &s2,vector<vector<int>>&t){
+        //base case
+       if(m==0 ||n==0){
+           return m+n;
+       }
+        
+        if(t[m][n]!=-1){
+            return t[m][n];
+        }
+        
+        int take=0;
+        int nottake=0;
+        if(s1[m-1]==s2[n-1]){
+             take=1+solve(m-1,n-1,s1,s2,t);
+            
+        }
+        else{
+            nottake=1+min(solve(m-1,n,s1,s2,t),solve(m,n-1,s1,s2,t));
+        }
+        
+        return t[m][n]=take+nottake;
+    }
+    int shortestCommonSupersequence(string &s1, string &s2) {
+        int m=s1.length();
+        int n=s2.length();
+        vector<vector<int>>t(m+1,vector<int>(n+1,-1));
+        return solve(m,n,s1,s2,t);
+    }
+};
 // } Driver Code Ends
