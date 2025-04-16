@@ -29,12 +29,13 @@ class Solution {
             return 1;
         }
         
-        int count=0;
-        //nth rod ko to mai daal do using
+       int count=0;
+        //n-1 rods ko from se mai aux daal do 
         count+=towerOfHanoi(n-1,from,to,aux);
+        //move nth rod from from to to
         count++;
-        count+=towerOfHanoi(n-1,aux,to,from);
-        
+        //move n-1 rods from aux to to 
+        count+=towerOfHanoi(n-1,aux,to,from);        
         return count;
     }
 };
