@@ -4,38 +4,28 @@
 // Return list of all combinations of balanced parantheses
 class Solution {
   public:
-  bool isvalid(string t){
-      int count=0;
-      for(char &ch:t){
-          if(ch=='('){
-              count++;
-          }
-          else{
-              count--;
-              if(count<0){
-                  return false;
-              }
-          }
-          
-      }
-      return count==0;
-  }
-  void solve(vector<string>&ans,string temp,int n){
+  
+  void solve(vector<string>&ans,string temp,int n,int open,int close){
       //base case
       if(temp.size()==n){
-          if(isvalid(temp)){
+         
               ans.push_back(temp);
-          }
+          
           return ;
       }
       
-      temp.push_back('(');
-      solve(ans,temp,n);
-      temp.pop_back();
+      if(open<n/2){
+          temp.push_back('(');
+          solve(ans,temp,n,open+1,close);
+          temp.pop_back();
+      }
       
-      temp.push_back(')');
-      solve(ans,temp,n);
-      temp.pop_back();
+      if(close<open){
+          temp.push_back(')');
+          solve(ans,temp,n,open,close+1);
+          temp.pop_back();
+          
+      }
   }
   
   
@@ -43,7 +33,7 @@ class Solution {
         // code here
         vector<string>ans;
         string temp="";
-        solve(ans,temp,n);
+        solve(ans,temp,n,0,0);
         return ans;
         
     }
