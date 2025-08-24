@@ -19,7 +19,7 @@ public:
 class Solution {
   public:
     Node *flattenBST(Node *root) {
-        //base case
+        // code here
         if(root==NULL){
             return NULL;
         }
@@ -27,7 +27,6 @@ class Solution {
         Node* head=flattenBST(root->left);
         root->left=NULL;
         root->right=flattenBST(root->right);
-        
         
         if(head!=NULL){
             Node* temp=head;
@@ -39,7 +38,7 @@ class Solution {
         else{
             head=root;
         }
-        return head;
         
+        return head;
     }
 };
