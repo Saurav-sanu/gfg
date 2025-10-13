@@ -1,7 +1,10 @@
 class Solution {
   public:
     bool isPrime(int n) {
-        if(n==1)return false;
+        // code here
+        if(n==1){
+            return false;
+        }
         if(n==2){
             return true;
         }
@@ -11,6 +14,5 @@ class Solution {
             }
         }
         return true;
-        
     }
 };
